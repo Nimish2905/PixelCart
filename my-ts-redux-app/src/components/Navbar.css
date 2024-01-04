@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-body {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  z-index: 20;
+}
+
+.nav-body img {
+  width: 250px;
+  height: 40px;
+}
+
+.content {
+  width: 22%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.content > * {
+  margin: 0 3px 0 3px;
+}
+
+.content button {
+  width: 5rem;
+  height: 30px;
+  transition: 1s ease;
+}
+
+.content button:hover {
+  background-color: #222831;
+  border: 0.5px solid #393e46;
+  cursor: pointer;
+  color: #eeeeee;
+}
