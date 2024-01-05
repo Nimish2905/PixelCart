@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
       {!isAuthenticated ? (
-        <div className="content">
+        <div className="content-sign">
           <Link to={"/signin"}>
             <button>Sign In</button>
           </Link>
@@ -38,6 +38,9 @@ const Navbar: React.FC = () => {
           <h3>{userName ? userName : "RANDOM GUY"}</h3>
           <Link to={"/"}>
             <button onClick={() => handleLogout()}>LogOut</button>
+          </Link>
+          <Link to={"/cart"}>
+            <button>My Cart</button>
           </Link>
         </div>
       )}
