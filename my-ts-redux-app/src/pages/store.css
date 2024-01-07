@@ -23,6 +23,8 @@
   align-items: center;
   background-color: #222831;
   margin-top: 5%;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .card {
@@ -49,32 +51,30 @@
   align-items: center;
 }
 
-#cart {
+.button-container button {
+  background-color: #222831;
+  color: #eeeeee;
+  border: #eeeeee 1px solid;
   height: 30px;
   width: 130px;
   cursor: pointer;
-  background-color: #222831;
-  border: #eeeeee 0.2px solid;
   border-radius: 25px;
-  color: #eeeeee;
+}
+
+#cart {
+  width: 130px;
 }
 
 #add,
-#subtract {
-  height: 30px;
+#remove {
   width: 35px;
-  cursor: pointer;
-  background-color: #222831;
-  border: #eeeeee 0.2px solid;
-  border-radius: 25px;
+}
+
+.button-container p {
   color: #eeeeee;
 }
 
-.button-container text {
-  color: #eeeeee;
-}
-
-.text-container text {
+.text-container p {
   font-size: 1.3rem;
   color: #eeeeee;
   font-family: "Judson", serif;
@@ -91,4 +91,10 @@
 .card img:hover {
   transform: rotate(30deg);
   cursor: crosshair;
+}
+
+.button-container button:hover {
+  background-color: #eeeeee;
+  border: 0.2px solid #222831;
+  color: #222831;
 }

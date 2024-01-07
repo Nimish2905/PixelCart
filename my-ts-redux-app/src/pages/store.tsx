@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./store.css";
 import img1 from "../models/cards/jordan-max-aura-4-shoes-cKMcXJ-PhotoRoom 1.png";
 import img2 from "../models/cards/air-jordan-1-mid-se-shoes-CF3K5m-PhotoRoom 1.png";
@@ -13,6 +13,9 @@ import img10 from "../models/cards/air-jordan-1-zoom-cmft-2-shoes-nX8Qqx-PhotoRo
 import img11 from "../models/cards/luka-2-bred-pf-basketball-shoes-LM9ScX-PhotoRoom 1.png";
 import img12 from "../models/cards/air-jordan-1-shoes-d1vgvb-PhotoRoom 1.png";
 import img13 from "../models/cards/jordan-spizike-low-chinese-new-year-shoes-LNdJ8J-PhotoRoom 1.png";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem, removeItem } from "../redux/cartSlice";
 
 interface items {
   src: string;
@@ -20,6 +23,50 @@ interface items {
   price: number;
 }
 const Store: React.FC = () => {
+  const [itemCounts, setItemCounts] = useState<number[]>(new Array(13).fill(0));
+  const history = useNavigate();
+  const dispatch = useDispatch();
+  const retrieveUserInfo = localStorage.getItem("userInfo");
+  const userInfo = retrieveUserInfo ? JSON.parse(retrieveUserInfo) : {};
+
+  const handleAddToCart = (
+    index: number,
+    nameOfItem: string,
+    priceOfItems: number,
+    quantityOfItems: number
+  ) => {
+    const updatedCounts = [...itemCounts];
+    updatedCounts[index]++;
+    setItemCounts(updatedCounts);
+    const cartButtonUpdate = document.getElementById("cart");
+    if (cartButtonUpdate) {
+      cartButtonUpdate.textContent = "Go to Cart";
+      cartButtonUpdate.onclick = () => history("/addtocart");
+    }
+
+    dispatch(
+      addItem({
+        itemId: index.toString(),
+        itemName: nameOfItem,
+        itemPrice: priceOfItems.toString(),
+        itemQuantity: updatedCounts[index].toString(),
+      })
+    );
+  };
+
+  const handleRemoveFromCart = (index: number) => {
+    const updatedCounts = [...itemCounts];
+    if (updatedCounts[index] > 0) {
+      updatedCounts[index]--;
+    }
+    setItemCounts(updatedCounts);
+    const cartButtonUpdate = document.getElementById("cart");
+    if (cartButtonUpdate && updatedCounts[index] === 0) {
+      cartButtonUpdate.textContent = "Add to Cart";
+      cartButtonUpdate.onclick = () => null;
+    }
+    dispatch(removeItem({ itemId: index.toString() })); //wip
+  };
   let content = null;
 
   const picturesArray: items[] = [
@@ -42,15 +89,29 @@ const Store: React.FC = () => {
     <div key={index} className="card-container">
       <div className="card">
         <div className="text-container">
-          <text>{item.name}</text>
-          <text>{item.price} $</text>
+          <p>{item.name}</p>
+          <p>{item.price} $</p>
         </div>
         <img src={item.src} alt={`Card ${index + 1}`} />
         <div className="button-container">
-          <button id="cart">Add to Cart</button>
-          <button id="add">+</button>
-          <text>0</text>
-          <button id="add">-</button>
+          <button
+            id="cart"
+            onClick={() => handleAddToCart(index, item.name, item.price, index)}
+          >
+            Add to Cart
+          </button>
+          <button
+            id="add"
+            onClick={() =>
+              handleAddToCart(index, item.name, item.price, itemCounts[index])
+            }
+          >
+            +
+          </button>
+          <p id="countOfItems">{itemCounts[index]}</p>
+          <button id="remove" onClick={() => handleRemoveFromCart(index)}>
+            -
+          </button>
         </div>
       </div>
     </div>
