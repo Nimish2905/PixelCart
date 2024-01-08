@@ -61,16 +61,16 @@
   border-radius: 25px;
 }
 
-#cart {
+.button-container button[id^="cart-"] {
   width: 130px;
 }
 
-#add,
-#remove {
+.button-container button[id^="add-"],
+.button-container button[id^="remove-"] {
   width: 35px;
 }
 
-.button-container p {
+.button-container p[id^="countOfItems-"] {
   color: #eeeeee;
 }
 

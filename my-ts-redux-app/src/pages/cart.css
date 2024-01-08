@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+}
+
+.cart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.empty-cart-message {
+  font-size: 1.5rem;
+  color: #555;
+}
+
+.cart-body {
+  display: flex;
+  width: 90%;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.item-card {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  width: 80%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.item-card:hover {
+  background-color: #297fb8;
+  opacity: 50%;
+  color: rgb(0, 0, 0);
+}
+
+.item-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.checkout-summary {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.checkout-summary p {
+  margin-bottom: 10px;
+}
+
+.total-amount {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.place-order-btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.place-order-btn:hover {
+  background-color: #297fb8;
+}
+
+.checkout-summary {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.summary-section.total {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.place-order-btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.place-order-btn:hover {
+  background-color: #297fb8;
+}
+
+.item-body img {
+  width: 50px;
+  height: 50px;
+}

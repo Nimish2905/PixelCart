@@ -59,7 +59,7 @@ const SignUp: React.FC = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       dispatch(setUserName(name));
       dispatch(login());
-      history("/");
+      history("/store");
     } catch (error) {
       console.log(error);
       showToastMessage("Error Occurred");

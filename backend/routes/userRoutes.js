@@ -1,4 +1,5 @@
 const express = require("express");
+const getAllItems = require("../controllers/itemController");
 const {
   registerUser,
   authUser,

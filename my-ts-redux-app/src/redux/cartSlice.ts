@@ -9,6 +9,7 @@ interface cartState {
     itemName: string;
     itemPrice: string;
     itemQuantity: string;
+    itemPicture: string;
   }>;
 }
 
@@ -30,31 +31,25 @@ const cartSlice = createSlice({
         itemName: string;
         itemPrice: string;
         itemQuantity: string;
+        itemPicture: string;
       }>
     ) => {
-      const { itemId, itemName, itemPrice, itemQuantity } = action.payload;
+      const { itemId, itemName, itemPrice, itemQuantity, itemPicture } =
+        action.payload;
 
-      // Check if item with the same itemId exists in the cart
       const existingItem = state.items.find((item) => item.itemId === itemId);
 
       if (existingItem) {
-        // If item exists, update its quantity
-        console.log(
-          "existing",
-          existingItem.itemQuantity,
-          "/n new:",
-          itemQuantity
-        );
         existingItem.itemQuantity = String(
           parseInt(existingItem.itemQuantity) + 1
         );
       } else {
-        // If item doesn't exist, add it to the cart
         state.items.push({
           itemId,
           itemName,
           itemPrice,
           itemQuantity,
+          itemPicture,
         });
       }
     },
@@ -71,8 +66,23 @@ const cartSlice = createSlice({
     deleteAllItems: (state, action: PayloadAction<string>) => {
       state.items = [];
     },
+    updateQuantity: (
+      state,
+      action: PayloadAction<{
+        itemId: string;
+        itemQuantity: string;
+      }>
+    ) => {
+      state.items.map((item) => {
+        if (item.itemId === action.payload.itemId) {
+          item.itemQuantity = action.payload.itemQuantity;
+        }
+        return item;
+      });
+    },
   },
 });
 
-export const { addItem, removeItem, deleteAllItems } = cartSlice.actions;
+export const { addItem, removeItem, deleteAllItems, updateQuantity } =
+  cartSlice.actions;
 export default cartSlice.reducer;

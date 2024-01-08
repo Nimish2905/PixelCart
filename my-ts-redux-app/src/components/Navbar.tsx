@@ -10,12 +10,14 @@ const Navbar: React.FC = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    localStorage.removeItem("userInfo");
   };
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
 
-  const userName = useSelector((state: RootState) => state.auth.userName);
+  const retrieveUserInfo = localStorage.getItem("userInfo");
+  const userInfo = retrieveUserInfo ? JSON.parse(retrieveUserInfo) : {};
 
   return (
     <div className="nav-body">
@@ -35,7 +37,7 @@ const Navbar: React.FC = () => {
         </div>
       ) : (
         <div className="content">
-          <h3>{userName ? userName : "RANDOM GUY"}</h3>
+          <h3>{userInfo.name}</h3>
           <Link to={"/"}>
             <button onClick={() => handleLogout()}>LogOut</button>
           </Link>
