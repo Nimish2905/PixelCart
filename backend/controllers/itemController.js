@@ -3,7 +3,6 @@ const Item = require("../models/itemModels");
 
 const getAllItems = asyncHandler(async (req, res) => {
   const itemExists = await Item.find({});
-    console.log(itemExists);
   if (itemExists) {
     res.send(itemExists);
 

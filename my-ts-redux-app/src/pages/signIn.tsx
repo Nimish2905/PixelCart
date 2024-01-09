@@ -34,7 +34,6 @@ const SignIn: React.FC = () => {
 
       <BottomToast message="Login Successfull!" />;
       localStorage.setItem("userInfo", JSON.stringify(data));
-      // dispatch(setUserName(name));
       dispatch(login());
       history("/store");
     } catch (error) {

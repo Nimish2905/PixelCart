@@ -1,5 +1,3 @@
-// BottomToast.tsx
-
 import React, { useEffect, useState } from "react";
 import "./BottomToast.css";
 
@@ -13,7 +11,7 @@ const BottomToast: React.FC<BottomToastProps> = ({ message }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 3000); // Adjust the duration as needed
+    }, 3000); 
 
     return () => clearTimeout(timer);
   }, []);
