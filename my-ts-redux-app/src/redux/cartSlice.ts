@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface cartState {
-  id: string;
-  name: string;
-  email: string;
+  finalOrder: Array<{
+    totalCost: number;
+    discount: number;
+    deliveryFee: number;
+    subTotalAmount: number;
+  }>;
   items: Array<{
     itemId: string;
     itemName: string;
@@ -14,9 +17,7 @@ interface cartState {
 }
 
 const initialState: cartState = {
-  id: "",
-  name: "",
-  email: "",
+  finalOrder: [],
   items: [],
 };
 
@@ -80,9 +81,39 @@ const cartSlice = createSlice({
         return item;
       });
     },
+    orderPlace: (
+      state,
+      action: PayloadAction<{
+        totalCost: number;
+        discount: number;
+        deliveryFee: number;
+        subTotalAmount: number;
+      }>
+    ) => {
+      if (state.finalOrder.length === 0) {
+        state.finalOrder.push({
+          totalCost: action.payload.totalCost,
+          discount: action.payload.discount,
+          deliveryFee: action.payload.deliveryFee,
+          subTotalAmount: action.payload.subTotalAmount,
+        });
+      } else {
+        state.finalOrder[0] = {
+          totalCost: action.payload.totalCost,
+          discount: action.payload.discount,
+          deliveryFee: action.payload.deliveryFee,
+          subTotalAmount: action.payload.subTotalAmount,
+        };
+      }
+    },
   },
 });
 
-export const { addItem, removeItem, deleteAllItems, updateQuantity } =
-  cartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  deleteAllItems,
+  updateQuantity,
+  orderPlace,
+} = cartSlice.actions;
 export default cartSlice.reducer;

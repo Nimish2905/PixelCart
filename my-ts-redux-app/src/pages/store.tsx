@@ -90,7 +90,7 @@ const Store: React.FC = () => {
             <p>{item.name}</p>
             <p>{item.price} $</p>
           </div>
-          <img src={item.src} alt={`Card ${index + 1}`} />
+          <img id="shoes" src={item.src} alt={`Card ${index + 1}`} />
           <div className="button-container">
             <button
               id={`cart-${index}`}

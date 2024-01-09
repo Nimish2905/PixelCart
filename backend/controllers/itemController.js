@@ -6,7 +6,6 @@ const getAllItems = asyncHandler(async (req, res) => {
   if (itemExists) {
     res.send(itemExists);
 
-    console.warn(itemExists);
   } else {
     res.status(400);
     throw new Error("Item exists");

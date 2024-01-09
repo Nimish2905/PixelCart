@@ -3,9 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Cart from "./pages/cart";
 import Home from "./pages/home";
+import PaymentGateway from "./pages/paymentGateway";
 import SignIn from "./pages/signIn";
 import SignUp from "./pages/signUp";
 import Store from "./pages/store";
+import OrderSummary from "./pages/orderSummary";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +20,8 @@ const App: React.FC = () => {
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/addtocart" element={<Cart />}></Route>
+        <Route path="/paymentgateway" element={<PaymentGateway />}></Route>
+        <Route path="/orderPlaced" element={<OrderSummary />}></Route>
       </Routes>
     </div>
   );

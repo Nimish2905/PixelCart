@@ -57,17 +57,21 @@
   border: #eeeeee 1px solid;
   height: 30px;
   width: 130px;
-  cursor: pointer;
   border-radius: 25px;
+  transition: 0.4s ease-in-out;
 }
 
 .button-container button[id^="cart-"] {
   width: 130px;
+  cursor: pointer;
+  z-index: 55;
 }
 
 .button-container button[id^="add-"],
 .button-container button[id^="remove-"] {
   width: 35px;
+  cursor: pointer;
+  z-index: 55;
 }
 
 .button-container p[id^="countOfItems-"] {
@@ -82,15 +86,11 @@
   padding-bottom: 5px;
 }
 
-.card img {
+#shoes {
   height: 20em;
-  width: 20em;
+  width: 18em;
   transition: 1s ease;
-}
-
-.card img:hover {
-  transform: rotate(30deg);
-  cursor: crosshair;
+  transform: rotate(-30deg);
 }
 
 .button-container button:hover {
