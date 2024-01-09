@@ -12,7 +12,7 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dob, setDob] = useState("");
-  const [showToast, setShowToast] = useState(false); // New state for toast visibility
+  const [showToast, setShowToast] = useState(false);  
   const [toastMessage, setToastMessage] = useState("");
   const history = useNavigate();
 
@@ -27,7 +27,7 @@ const SignUp: React.FC = () => {
    if (showToast) {
      const timer = setTimeout(() => {
        setShowToast(false);
-     }, 3000); // Adjust the duration as needed
+     }, 3000);
 
      return () => clearTimeout(timer);
    }
@@ -59,7 +59,7 @@ const SignUp: React.FC = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       dispatch(setUserName(name));
       dispatch(login());
-      history("/");
+      history("/store");
     } catch (error) {
       console.log(error);
       showToastMessage("Error Occurred");
