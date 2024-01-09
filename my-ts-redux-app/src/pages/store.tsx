@@ -42,8 +42,6 @@ const Store: React.FC = () => {
     return () => {};
   }, []);
 
-  console.log(allItems);
-
   const handleAddToCart = (
     index: number,
     nameOfItem: string,
