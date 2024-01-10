@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { RootState } from "../store/store";
 import "./orderSummary.css";
 
 interface CartItem {
   itemName: string;
+  itemQuantity: string;
 }
 
 const OrderSummary: React.FC = () => {
@@ -14,7 +16,6 @@ const OrderSummary: React.FC = () => {
   const [orderNo, setOrderNo] = useState("");
   const [orderTotalCost, setOrderTotalCost] = useState("");
   const [orderPlacedBy, setOrderPlacedBy] = useState("");
-  const [data, setData] = useState<any>(null); // Adjust the type based on your data structure
 
   useEffect(() => {
     const prefix = "ORD";
@@ -24,10 +25,11 @@ const OrderSummary: React.FC = () => {
 
     setOrderNo(generatedOrderNo);
 
-    const itemNamesArray: string[] = state.items.map(
-      (item: CartItem) => item.itemName
-    );
-    console.log(itemNamesArray);
+    const orderItemsArray = state.items.map((item: CartItem) => ({
+      itemName: item.itemName,
+      itemQuantity: item.itemQuantity,
+    }));
+
     setOrderTotalCost(state.finalOrder[0]?.totalCost.toString());
     const retrieveUserInfo = localStorage.getItem("userInfo");
     const userInfo = retrieveUserInfo ? JSON.parse(retrieveUserInfo) : {};
@@ -41,21 +43,16 @@ const OrderSummary: React.FC = () => {
       };
 
       try {
-        const { data } = await axios.post(
+        await axios.post(
           "/api/orders/placeOrder",
           {
             orderNo: generatedOrderNo,
-            itemNamesArray,
+            orderItems: orderItemsArray,
             orderTotalCost,
             orderPlacedBy,
           },
           config
         );
-
-        if (data) {
-          setData(data);
-          console.log(data);
-        }
       } catch (error) {
         console.log(error);
       }
@@ -66,7 +63,27 @@ const OrderSummary: React.FC = () => {
     }, 5000);
   }, [state.items, state.finalOrder, orderTotalCost, orderPlacedBy]);
 
-  return <div className="summary-body"></div>;
+  return (
+    <div className="confirmation-page">
+      <div className="confirmation-container">
+        <h1>Order Placed Successfully!</h1>
+        <p>
+          Your order has been confirmed. Thank you for choosing our services.
+        </p>
+        <div className="confirmation-details">
+          <p>
+            Order Number: <span>{orderNo}</span>
+          </p>
+          <p>
+            Total Amount: <span>{orderTotalCost} $</span>
+          </p>
+        </div>
+        <div className="confirmation-actions">
+          <Link to="/">Back to Home</Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default OrderSummary;

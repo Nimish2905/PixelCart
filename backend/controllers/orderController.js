@@ -2,9 +2,9 @@ const asyncHandler = require("express-async-handler");
 const Order = require("../models/orderModel");
 
 const placeOrder = asyncHandler(async (req, res) => {
-  const { orderNo, itemNamesArray, orderTotalCost, orderPlacedBy } = req.body;
+  const { orderNo, orderItems, orderTotalCost, orderPlacedBy } = req.body;
 
-  if (!orderNo || !itemNamesArray || !orderTotalCost || !orderPlacedBy) {
+  if (!orderNo || !orderItems || !orderTotalCost || !orderPlacedBy) {
     res.status(400);
     throw new Error("Please Enter all the Fields");
   }
@@ -18,7 +18,7 @@ const placeOrder = asyncHandler(async (req, res) => {
 
   const order = await Order.create({
     orderNo,
-    orderItems: itemNamesArray,
+    orderItems, // This will now be an array of objects with itemName and itemQuantity
     orderTotalCost,
     orderPlacedBy,
   });

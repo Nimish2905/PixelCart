@@ -3,9 +3,56 @@
   padding: 0;
 }
 
-.summary-body {
+/* ConfirmationPage.css */
+
+.confirmation-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #f8f8f8;
 }
+
+.confirmation-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.confirmation-container h1 {
+  color: #2c3e50;
+}
+
+.confirmation-details {
+  margin-top: 20px;
+}
+
+.confirmation-details p {
+  margin: 8px 0;
+}
+
+.confirmation-details span {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.confirmation-actions {
+  margin-top: 20px;
+}
+
+.confirmation-actions a {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #3498db;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.confirmation-actions a:hover {
+  background-color: #2980b9;
+}
+

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RootState } from "../store/store";
 import { orderPlace } from "../redux/cartSlice";
 import "./cart.css";
@@ -16,11 +16,11 @@ const Cart: React.FC = () => {
   const state = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
   const [randomWord, setRandomWord] = useState<string>("");
+  const history = useNavigate();
 
   const calculateCartAmount = useCallback(() => {
     let tempSubtotal = 0;
     let tempTotalQuantity = 0;
-
     state.items.forEach((item: CartItem) => {
       const finalPrice = parseInt(item.itemPrice) * parseInt(item.itemQuantity);
       tempTotalQuantity += parseInt(item.itemQuantity);
@@ -168,7 +168,7 @@ const Cart: React.FC = () => {
           )}
         </>
       ) : (
-        <>ERROR</>
+        history("/signup")
       )}
     </>
   );

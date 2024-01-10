@@ -34,6 +34,9 @@ const Navbar: React.FC = () => {
           <Link to={"/signup"}>
             <button>Sign Up</button>
           </Link>
+          <Link to={"/store"}>
+            <button>Store</button>
+          </Link>
         </div>
       ) : (
         <div className="content">
@@ -43,6 +46,9 @@ const Navbar: React.FC = () => {
           </Link>
           <Link to={"/cart"}>
             <button>My Cart</button>
+          </Link>
+          <Link to={"/store"}>
+            <button>Store</button>
           </Link>
         </div>
       )}

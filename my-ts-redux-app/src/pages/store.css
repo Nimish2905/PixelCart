@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  background-color: #eeeeee;
+  z-index: 100;
+}
+
 .main-body {
   display: flex;
   flex-wrap: wrap;
@@ -14,6 +19,7 @@
   height: 100vh;
   z-index: 1;
   overflow-x: hidden;
+  background-color: #eeeeee;
 }
 
 .card-container {
